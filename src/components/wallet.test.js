@@ -19,9 +19,7 @@ describe('Wallet', () => {
     expect(wallet).toMatchSnapshot();
   });
   it('displays the balance from props', () => {
-    // [data-testid="quantity"]
     expect(wallet.find('span').text()).toEqual(props.balance.toString())
     
-    // .text()).toEqual(props.balance);
   })
 });
