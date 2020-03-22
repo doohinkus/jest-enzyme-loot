@@ -13,7 +13,7 @@ export function Wallet({ balance }){
       <input 
         className='input-wallet'
         onChange={e => setAmount(e.target.value)}
-        value={amount}
+        value={Number(amount)}
         type="number" />
     </div>
   )

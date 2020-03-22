@@ -32,7 +32,7 @@ describe('Wallet', () => {
   });
 
   describe('when a user typed into the input-wallet field, then the state is updated', () => {
-    const inputBalance = "27";
+    const inputBalance = 27;
     // beforeEach(() => {
       
     // });
@@ -40,7 +40,7 @@ describe('Wallet', () => {
       wallet.find('.input-wallet')
       .simulate('change', { target: { value: inputBalance }})
       // console.log(wallet.find('.input-wallet').props().value, " ", )
-      expect(wallet.find('.input-wallet').props().value).toEqual(inputBalance)
+      expect(wallet.find('.input-wallet').props().value).toEqual(Number(inputBalance))
     })
   })
 
