@@ -1,6 +1,7 @@
 import {setBalance, 
   SET_BALANCE,
   DEPOSIT_AMOUNT,
+  WITHDRAWL_AMOUNT,
   depositAmount,
   balanceReducer} from './lootcheck.duck.js';
 
@@ -37,7 +38,18 @@ describe('balance reducer', () => {
   it('deposits into the balance', () => {
     const deposit = 5;
     const initialState = { balance : 0 }
-    const action = { type: DEPOSIT_AMOUNT, payload: deposit}
-    expect(balanceReducer(initialState, action)).toEqual({ balance: deposit })
+    const action = { type: DEPOSIT_AMOUNT, payload: deposit }
+    const result = initialState.balance + deposit
+    expect(balanceReducer(initialState, action)).toEqual({ balance: result })
   });
+
+  it('withdraws from the balance', () => {
+    const withdrawl = 13;
+    const initialState = {
+      balance: 17
+    }
+    const action = { type: WITHDRAWL_AMOUNT, payload: withdrawl };
+    const result =  initialState.balance - withdrawl;
+    expect(balanceReducer(initialState, action)).toEqual({ balance: result })
+  })
 });
