@@ -1,6 +1,6 @@
 export const SET_BALANCE = "SET_BALANCE";
 export const DEPOSIT = "DEPOSIT";
-export const WITHDRAWL = "WITHDRAWL";
+export const WITHDRAW = "WITHDRAW";
 
 export function setBalance(balance){
   return {
@@ -9,16 +9,16 @@ export function setBalance(balance){
   }
 }
 
-export function depositAmount(deposit){
+export function deposit(deposit){
   return {
     type: DEPOSIT,
-    deposit
+    payload: deposit
   }
 }
-export function withdrawlAmount(withdrawl){
+export function withdraw(withdraw){
   return {
-    type: WITHDRAWL,
-    withdrawl
+    type: WITHDRAW,
+    payload: withdraw
   }
 }
 
@@ -34,7 +34,7 @@ export function balanceReducer(state = { balance : 0 }, action){
         ...state,
         balance: action.payload + state.balance
       }
-    case WITHDRAWL:
+    case WITHDRAW:
       return {
         ...state,
         balance: state.balance - action.payload

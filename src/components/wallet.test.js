@@ -6,7 +6,7 @@ Enzyme.configure({ adapter: new Adapter() });
 // great little hack
 // export the component
 // lets you avoid the redux boilderplate
-import { Wallet } from './Wallet.js';
+import { Wallet }  from './Wallet.js';
 
 
 
@@ -14,8 +14,11 @@ import { Wallet } from './Wallet.js';
 describe('Wallet', () => {
   const props = {
     balance: 27,
-    amount: null
+    amount: null,
+    deposit: jest.fn(),
+    withdraw: jest.fn()
   }
+  
   const setState = jest.fn();
   const useStateSpy = jest.spyOn(React, 'useState')
   useStateSpy.mockImplementation((init) => [init, setState]);
@@ -40,8 +43,29 @@ describe('Wallet', () => {
       wallet.find('.input-wallet')
       .simulate('change', { target: { value: inputBalance }})
       // console.log(wallet.find('.input-wallet').props().value, " ", )
-      expect(wallet.find('.input-wallet').props().value).toEqual(Number(inputBalance))
+      expect(wallet.find('.input-wallet').props().value).toEqual(Number(inputBalance));
+    });
+
+    describe('and the user wants to make a deposti', () => {
+      beforeEach(() => {
+        wallet.find('.btn-deposit')
+          .simulate('click')
+      });
+      it('dispatches the `deposit()` it receives from props with the local balance', () => {
+         expect(props.deposit).toHaveBeenCalledWith(Number(inputBalance));
+      });
+
+
+    });
+    describe('and the use makes a withdrawl', () => {
+      beforeEach(() => {
+        wallet.find('.btn-withdraw')
+          .simulate('click')
+      });
+      it('dispatches `withdrawl()` it receives props with the local balance', () => {
+        expect(props.withdraw).toHaveBeenCalledWith(Number(inputBalance));
+      });
     })
-  })
+  });
 
 });
