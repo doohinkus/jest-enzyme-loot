@@ -22,7 +22,9 @@ export function withdraw(withdraw){
   }
 }
 
-export function balanceReducer(state = { balance : 0 }, action){
+export const initialState = { balance : 0 };
+
+export function balanceReducer(state = initialState, action){
   switch(action.type){
     case SET_BALANCE:
       return {

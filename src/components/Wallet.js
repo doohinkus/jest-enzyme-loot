@@ -7,8 +7,7 @@ import { deposit, withdraw } from '../redux/lootcheck.duck';
 // lets you avoid the redux boilderplate
 
 export function Wallet({ balance, deposit, withdraw }){
-   const [amount, setAmount] = useState(0);
-  
+  const [amount, setAmount] = useState(0);  
   return (
     <div>
       <h3>Wallet balance: <span data-testid="balance">{balance}</span></h3>
