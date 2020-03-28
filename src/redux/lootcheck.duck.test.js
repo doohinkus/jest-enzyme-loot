@@ -3,10 +3,12 @@ import {setBalance,
   DEPOSIT,
   WITHDRAW,
   deposit,
-  cookieBalanceReducer,
   balanceReducer} from './lootcheck.duck.js';
 
 describe('actions', () => {
+
+  
+
   it('creates and action to set the balance', () => {
     const balance = 0;
     const expectedAction = {
@@ -27,22 +29,18 @@ describe('actions', () => {
 
 describe('balance reducer', () => {
   describe('when initalizing', () => {
+    const amount =  10;
+    const balance = {
+      balance: amount
+    }
+    const action = { type: SET_BALANCE, payload: amount };
+    const initialState = { balance : 0 };
+
+   
+
     it('sets a balance', () => {
-      const amount =  10;
-      const balance = {
-        balance: amount
-      }
-      const action = { type: SET_BALANCE, payload: amount };
-      const initialState = { balance : 0 }
       expect(balanceReducer(initialState, action)).toEqual(balance)
     });
-  
-    describe('then re-initializing', () => {
-      it('reads the blanace from the cookie', () => {
-         expect(cookieBalanceReducer(undefined, { type: SET_BALANCE }))
-           .toEqual(balance)
-      })
-    })
   
     it('deposits into the balance', () => {
       const deposit = 5;
@@ -60,6 +58,7 @@ describe('balance reducer', () => {
       const action = { type: WITHDRAW, payload: withdraw };
       const result =  initialState.balance - withdraw;
       expect(balanceReducer(initialState, action)).toEqual({ balance: result })
-    })
+    });
+
   })
 });

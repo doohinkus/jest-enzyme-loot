@@ -1,6 +1,7 @@
 export const SET_BALANCE = "SET_BALANCE";
 export const DEPOSIT = "DEPOSIT";
 export const WITHDRAW = "WITHDRAW";
+export const FETCH_BITCOIN = "FETCH_BITCOIN";
 
 export function setBalance(balance){
   return {
@@ -22,6 +23,13 @@ export function withdraw(withdraw){
   }
 }
 
+export function fetchBitCoin(data){
+  return {
+    type: FETCH_BITCOIN,
+    payload: data
+  }
+}
+
 export const initialState = { balance : 0 };
 
 export function balanceReducer(state = initialState, action){
@@ -40,6 +48,11 @@ export function balanceReducer(state = initialState, action){
       return {
         ...state,
         balance: state.balance - action.payload
+      }
+    case FETCH_BITCOIN:
+      return {
+        ...state,
+        bitcoin: action.payload
       }
     default:
       return state
