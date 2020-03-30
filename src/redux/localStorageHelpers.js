@@ -1,13 +1,22 @@
 export function loadState(initialState){
   try {
     const serializedState = localStorage.getItem('state');
-    if (serializedState === null) {
+    // when there are no items or someone reshapes initialState, load initial state
+    // JSON.stringify(data1) === JSON.stringify(data2)
+    if (!serializedState) {
       return initialState;
     }
+    // when there are items in local storage, load from local storage
     return JSON.parse(serializedState);
   } catch (err) {
     return initialState;
   }
+}
+
+function isChangeToShapeOfState(initialState, serializedState){
+  const keys = JSON.parse(initialState);
+   console.log("KEYSS>>>", keys)
+   return initialState !== JSON.parse(serializedState);
 }
 
 export function saveState(state){

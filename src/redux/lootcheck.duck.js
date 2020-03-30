@@ -23,14 +23,14 @@ export function withdraw(withdraw){
   }
 }
 
-export function fetchBitCoin(data){
+export function bitcoinData(data){
   return {
     type: FETCH_BITCOIN,
     payload: data
   }
 }
 
-export const initialState = { balance : 0 };
+export const initialState = { balance : 0, bitcoin: 0 };
 
 export function balanceReducer(state = initialState, action){
   switch(action.type){
@@ -50,12 +50,14 @@ export function balanceReducer(state = initialState, action){
         balance: state.balance - action.payload
       }
     case FETCH_BITCOIN:
-      return {
-        ...state,
-        bitcoin: action.payload
-      }
+        return {
+          ...state,
+          bitcoin: action.payload
+        }
+
     default:
       return state
   }
 
 }
+

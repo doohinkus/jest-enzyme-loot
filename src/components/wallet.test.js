@@ -1,12 +1,11 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-
+import { Wallet }  from './Wallet.js';
 Enzyme.configure({ adapter: new Adapter() });
 // great little hack
 // export the component
 // lets you avoid the redux boilderplate
-import { Wallet }  from './Wallet.js';
 
 
 

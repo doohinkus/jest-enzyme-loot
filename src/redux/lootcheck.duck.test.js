@@ -61,4 +61,5 @@ describe('balance reducer', () => {
     });
 
   })
+
 });
